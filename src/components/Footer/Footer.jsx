@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, Sparkles, ExternalLink } from 'lucide-react';
+import { ArrowUp, ExternalLink } from 'lucide-react';
 import RaghuLogo from '../Common/RaghuLogo';
 import { CONFIG } from '../../config/environment';
 
@@ -11,9 +11,9 @@ export const Footer = ({ onRegisterClick, onOpenHackathonHub }) => {
   return (
     <footer
       style={{
-        backgroundColor: '#040507',
-        borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-        padding: '70px 0 35px 0',
+        backgroundColor: '#040608',
+        borderTop: '1px solid rgba(148, 163, 184, 0.06)',
+        padding: '60px 0 28px 0',
         position: 'relative',
       }}
     >
@@ -21,40 +21,47 @@ export const Footer = ({ onRegisterClick, onOpenHackathonHub }) => {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: '40px',
-            marginBottom: '60px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: '36px',
+            marginBottom: '48px',
           }}
         >
-          {/* Brand Info */}
+          {/* Brand */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
               <div
                 style={{
-                  width: '36px',
-                  height: '36px',
-                  borderRadius: '10px',
-                  background: 'linear-gradient(135deg, #146ef5 0%, #00f0ff 100%)',
+                  width: '30px',
+                  height: '30px',
+                  borderRadius: '8px',
+                  background: 'linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-cyan) 100%)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                   <path d="M4 4H20V8H8V11H18V15H8V20H4V4Z" fill="#ffffff" />
                 </svg>
               </div>
-
-              <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1.8rem', color: '#ffffff' }}>
+              <span
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '1.3rem',
+                  fontWeight: '700',
+                  color: '#ffffff',
+                  letterSpacing: '-0.01em',
+                }}
+              >
                 FOUNDRIX 2026
               </span>
             </div>
 
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '16px' }}>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: '1.6', marginBottom: '14px' }}>
               Flagship Startup & Tech Ecosystem Event organized by the students of Raghu Engineering College.
             </p>
 
-            <div style={{ marginBottom: '16px' }}>
+            <div style={{ marginBottom: '14px' }}>
               <RaghuLogo size="small" showWordmark={true} />
             </div>
 
@@ -62,46 +69,65 @@ export const Footer = ({ onRegisterClick, onOpenHackathonHub }) => {
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '8px',
+                gap: '6px',
                 fontFamily: 'var(--font-mono)',
-                fontSize: '0.75rem',
-                color: 'var(--accent-cyan)',
-                padding: '6px 12px',
+                fontSize: '0.7rem',
+                color: 'var(--text-muted)',
+                padding: '5px 10px',
                 borderRadius: 'var(--radius-sm)',
-                backgroundColor: 'rgba(0, 240, 255, 0.08)',
-                border: '1px solid rgba(0, 240, 255, 0.2)',
+                backgroundColor: 'rgba(255, 255, 255, 0.02)',
+                border: '1px solid rgba(148, 163, 184, 0.06)',
+                letterSpacing: '0.04em',
               }}
             >
-              <Sparkles size={13} />
               <span>Dakamarri, Visakhapatnam, AP</span>
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Navigation */}
           <div>
-            <h5 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', color: '#ffffff', marginBottom: '16px', letterSpacing: '0.05em' }}>
-              EVENT NAVIGATION
+            <h5
+              style={{
+                fontFamily: 'var(--font-heading)',
+                fontSize: '0.85rem',
+                fontWeight: '600',
+                color: 'var(--text-secondary)',
+                marginBottom: '16px',
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
+              }}
+            >
+              Event Navigation
             </h5>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.9rem' }}>
-              <li><a href="#events" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>The 2 Pillars</a></li>
-              <li><a href="#schedule" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>2-Day Itinerary</a></li>
-              <li><a href="#venue" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Campus Venue & Location</a></li>
-              <li><a href="#passes" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>All-in-One Pass (₹799)</a></li>
-              <li><a href="#faq" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>FAQs & Guidelines</a></li>
-              <li><a href="#contact" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Coordinator Helplines</a></li>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.88rem' }}>
+              <li><a href="#events" style={{ color: 'var(--text-muted)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'var(--text-muted)'}>The 2 Pillars</a></li>
+              <li><a href="#venue" style={{ color: 'var(--text-muted)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'var(--text-muted)'}>Campus Venue</a></li>
+              <li><a href="#passes" style={{ color: 'var(--text-muted)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'var(--text-muted)'}>All-in-One Pass (₹799)</a></li>
+              <li><a href="#faq" style={{ color: 'var(--text-muted)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'var(--text-muted)'}>FAQs & Guidelines</a></li>
+              <li><a href="#contact" style={{ color: 'var(--text-muted)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.target.style.color = '#fff'} onMouseLeave={(e) => e.target.style.color = 'var(--text-muted)'}>Coordinator Helplines</a></li>
             </ul>
           </div>
 
-          {/* Direct Portals & Action */}
+          {/* Actions */}
           <div>
-            <h5 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', color: '#ffffff', marginBottom: '16px', letterSpacing: '0.05em' }}>
-              PARTICIPANT HUB
+            <h5
+              style={{
+                fontFamily: 'var(--font-heading)',
+                fontSize: '0.85rem',
+                fontWeight: '600',
+                color: 'var(--text-secondary)',
+                marginBottom: '16px',
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
+              }}
+            >
+              Participant Hub
             </h5>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <button
                 onClick={onRegisterClick}
                 className="btn-border-beam"
-                style={{ width: '100%', padding: '12px', fontSize: '0.85rem' }}
+                style={{ width: '100%', padding: '11px', fontSize: '0.82rem', justifyContent: 'center' }}
               >
                 <span>GET PASS — ₹799</span>
               </button>
@@ -109,7 +135,7 @@ export const Footer = ({ onRegisterClick, onOpenHackathonHub }) => {
               <button
                 onClick={onOpenHackathonHub}
                 className="btn-ghost-cyan"
-                style={{ width: '100%', padding: '12px', fontSize: '0.85rem', justifyContent: 'center' }}
+                style={{ width: '100%', padding: '11px', fontSize: '0.82rem', justifyContent: 'center' }}
               >
                 <span>HACKATHON TEAM HUB</span>
               </button>
@@ -117,43 +143,40 @@ export const Footer = ({ onRegisterClick, onOpenHackathonHub }) => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
+        {/* Bottom bar */}
         <div
           style={{
-            borderTop: '1px solid rgba(255, 255, 255, 0.06)',
-            paddingTop: '25px',
+            borderTop: '1px solid rgba(148, 163, 184, 0.06)',
+            paddingTop: '20px',
             display: 'flex',
             flexWrap: 'wrap',
             alignItems: 'center',
             justifyContent: 'space-between',
-            gap: '16px',
-            fontSize: '0.82rem',
+            gap: '12px',
+            fontSize: '0.78rem',
             color: 'var(--text-muted)',
             fontFamily: 'var(--font-mono)',
           }}
         >
-          <div>
-            © 2026 FOUNDRIX • Raghu Engineering College. All rights reserved.
-          </div>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-            <span>Visakhapatnam, Andhra Pradesh</span>
+          <div>© 2026 FOUNDRIX • Raghu Engineering College</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <span>Visakhapatnam, AP</span>
             <button
               onClick={scrollToTop}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '6px',
+                gap: '5px',
                 background: 'none',
                 border: 'none',
                 color: 'var(--accent-cyan)',
                 cursor: 'pointer',
                 fontFamily: 'var(--font-mono)',
-                fontSize: '0.82rem',
+                fontSize: '0.78rem',
               }}
             >
-              <span>Back to Top</span>
-              <ArrowUp size={14} />
+              <span>Top</span>
+              <ArrowUp size={13} />
             </button>
           </div>
         </div>

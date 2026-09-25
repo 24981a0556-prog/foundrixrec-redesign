@@ -1,72 +1,121 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './FlipClock.css';
 
 /**
- * Single 3D Split-Flap Card Component
- * Emulates physical mechanical split-flap boards with realistic 3D perspective fold
+ * Single Countdown Unit
  */
-const FlipCard = ({ value, label }) => {
-  const [currentVal, setCurrentVal] = useState(value);
-  const [nextVal, setNextVal] = useState(value);
-  const [isFlipping, setIsFlipping] = useState(false);
-  const prevValRef = useRef(value);
+const CountdownUnit = ({ value, label }) => {
+  const [displayVal, setDisplayVal] = useState(value);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const prevRef = useRef(value);
 
   useEffect(() => {
-    if (value !== prevValRef.current) {
-      setNextVal(value);
-      setIsFlipping(true);
-
-      const timeout = setTimeout(() => {
-        setCurrentVal(value);
-        setIsFlipping(false);
-        prevValRef.current = value;
-      }, 560);
-
-      return () => clearTimeout(timeout);
+    if (value !== prevRef.current) {
+      setIsAnimating(true);
+      const timer = setTimeout(() => {
+        setDisplayVal(value);
+        setIsAnimating(false);
+        prevRef.current = value;
+      }, 300);
+      return () => clearTimeout(timer);
     }
   }, [value]);
 
   return (
-    <div className="flip-unit">
-      <div className="flip-card-box">
-        {/* Corner Sub-label like "PM" in user reference photo */}
-        <span className="flip-corner-tag">{label}</span>
-
-        {/* Top Static (reveals new value underneath when flap drops) */}
-        <div className="flip-card-half flip-card-top">
-          <span>{nextVal}</span>
-        </div>
-
-        {/* Bottom Static (shows current value before flap slaps down) */}
-        <div className="flip-card-half flip-card-bottom">
-          <span>{currentVal}</span>
-        </div>
-
-        {/* Flipping Top Flap (folds down from 0deg to -90deg) */}
-        <div className={`flip-card-half flip-card-top flip-leaf-top ${isFlipping ? 'flipping-top' : ''}`}>
-          <span>{currentVal}</span>
-        </div>
-
-        {/* Flipping Bottom Flap (falls down from 90deg to 0deg) */}
-        <div className={`flip-card-half flip-card-bottom flip-leaf-bottom ${isFlipping ? 'flipping-bottom' : ''}`}>
-          <span>{nextVal}</span>
-        </div>
-
-        {/* Center Split Groove & Side Notches */}
-        <div className="flip-divider-line" />
-        <div className="flip-side-notch-left" />
-        <div className="flip-side-notch-right" />
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+      <div
+        style={{
+          width: 'clamp(56px, 12vw, 80px)',
+          height: 'clamp(56px, 12vw, 80px)',
+          borderRadius: 'var(--radius-md)',
+          backgroundColor: 'rgba(11, 18, 32, 0.9)',
+          border: '1px solid rgba(22, 119, 255, 0.15)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontFamily: 'var(--font-display)',
+          fontSize: 'clamp(1.6rem, 4vw, 2.4rem)',
+          fontWeight: '700',
+          color: '#ffffff',
+          letterSpacing: '-0.02em',
+          position: 'relative',
+          overflow: 'hidden',
+          transition: 'border-color 0.3s ease',
+          backdropFilter: 'blur(8px)',
+        }}
+      >
+        {/* Subtle top glow line */}
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: '20%',
+            right: '20%',
+            height: '1px',
+            background: 'linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.3), transparent)',
+          }}
+        />
+        <span
+          style={{
+            transform: isAnimating ? 'translateY(-4px) scale(1.05)' : 'translateY(0) scale(1)',
+            opacity: isAnimating ? 0.6 : 1,
+            transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+          }}
+        >
+          {displayVal}
+        </span>
       </div>
-
-      {/* Subtitle Label */}
-      <span className="flip-bottom-label">{label}</span>
+      <span
+        style={{
+          fontFamily: 'var(--font-mono)',
+          fontSize: '0.6rem',
+          fontWeight: '600',
+          letterSpacing: '0.15em',
+          color: 'var(--text-muted)',
+          textTransform: 'uppercase',
+        }}
+      >
+        {label}
+      </span>
     </div>
   );
 };
 
 /**
- * 3D Mechanical Flip Clock Countdown to Summit
- * Target: 9 October 2026, 09:00 AM IST
+ * Separator between countdown units
+ */
+const Separator = () => (
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '8px',
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingBottom: '24px',
+    }}
+  >
+    <div
+      style={{
+        width: '4px',
+        height: '4px',
+        borderRadius: '50%',
+        backgroundColor: 'rgba(22, 119, 255, 0.5)',
+      }}
+    />
+    <div
+      style={{
+        width: '4px',
+        height: '4px',
+        borderRadius: '50%',
+        backgroundColor: 'rgba(22, 119, 255, 0.5)',
+      }}
+    />
+  </div>
+);
+
+/**
+ * Premium Countdown Clock
+ * Uses actual live countdown logic from targetDate prop
  */
 export const FlipClock = ({ targetDate = '2026-10-09T09:00:00+05:30' }) => {
   const [timeLeft, setTimeLeft] = useState({
@@ -106,17 +155,26 @@ export const FlipClock = ({ targetDate = '2026-10-09T09:00:00+05:30' }) => {
   }, [targetDate]);
 
   return (
-    <div className="flip-clock-wrapper reveal-on-scroll">
-      {/* Live Badge */}
-      <div className="flip-clock-header">
-        <span className="flip-live-dot" />
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
+      {/* Live indicator */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <span
+          style={{
+            width: '6px',
+            height: '6px',
+            borderRadius: '50%',
+            backgroundColor: 'var(--accent-cyan)',
+            boxShadow: '0 0 6px rgba(0, 229, 255, 0.5)',
+            animation: 'pulseGlow 2s ease-in-out infinite alternate',
+          }}
+        />
         <span
           style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '0.72rem',
-            fontWeight: '700',
-            color: 'var(--accent-cyan)',
-            letterSpacing: '0.12em',
+            fontSize: '0.65rem',
+            fontWeight: '600',
+            color: 'var(--text-muted)',
+            letterSpacing: '0.1em',
             textTransform: 'uppercase',
           }}
         >
@@ -124,37 +182,21 @@ export const FlipClock = ({ targetDate = '2026-10-09T09:00:00+05:30' }) => {
         </span>
       </div>
 
-      {/* 4 Split-Flap Clock Modules */}
-      <div className="flip-clock-container">
-        {/* DAYS */}
-        <FlipCard value={timeLeft.days} label="DAYS" />
-
-        {/* Separator Colons */}
-        <div className="flip-separator">
-          <div className="flip-separator-dot" />
-          <div className="flip-separator-dot" />
-        </div>
-
-        {/* HOURS */}
-        <FlipCard value={timeLeft.hours} label="HOURS" />
-
-        {/* Separator Colons */}
-        <div className="flip-separator">
-          <div className="flip-separator-dot" />
-          <div className="flip-separator-dot" />
-        </div>
-
-        {/* MINUTES */}
-        <FlipCard value={timeLeft.minutes} label="MINS" />
-
-        {/* Separator Colons */}
-        <div className="flip-separator">
-          <div className="flip-separator-dot" />
-          <div className="flip-separator-dot" />
-        </div>
-
-        {/* SECONDS */}
-        <FlipCard value={timeLeft.seconds} label="SECS" />
+      {/* Countdown units */}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 'clamp(8px, 2vw, 16px)',
+        }}
+      >
+        <CountdownUnit value={timeLeft.days} label="Days" />
+        <Separator />
+        <CountdownUnit value={timeLeft.hours} label="Hours" />
+        <Separator />
+        <CountdownUnit value={timeLeft.minutes} label="Mins" />
+        <Separator />
+        <CountdownUnit value={timeLeft.seconds} label="Secs" />
       </div>
     </div>
   );

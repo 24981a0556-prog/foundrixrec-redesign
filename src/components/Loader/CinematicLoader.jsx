@@ -1,19 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 /**
- * Modern Entrepreneurship Summit Preloader
- * 1. Fast Cycling Words (Phase 1):
- *    - INNOVATE
- *    - BUILD SPRINT
- *    - REC CAMPUS
- *    - LIVE PITCH
- *    - FOUNDRIX
- * 2. Main Locked Wordmark (Phase 2 & 3):
- *    - FOUNDRIX (Clean solid white, zero '@' or glitch characters)
- *    - Subtitle: THE FLAGSHIP TECH SUMMIT • 2026
- * 3. High-velocity curtain slide-up reveal
+ * Premium Cinematic Preloader for FOUNDRIX 2026
+ * Phases: Fast word cycling → Lock on FOUNDRIX → Slide-up reveal
+ * All event content from actual data, no invented info.
  */
-
 export const CinematicLoader = ({ onComplete }) => {
   const cyclingWords = [
     'INNOVATE',
@@ -28,7 +19,6 @@ export const CinematicLoader = ({ onComplete }) => {
   const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {
-    // Phase 1: Fast cycling through the words
     let intervalId;
     let wordIndex = 0;
 
@@ -37,32 +27,29 @@ export const CinematicLoader = ({ onComplete }) => {
       if (wordIndex < cyclingWords.length) {
         setCurrentIndex(wordIndex);
       } else {
-        // Phase 2: Lock onto FOUNDRIX
         clearInterval(intervalId);
         setIsLocked(true);
 
-        // Phase 3: Hold locked wordmark & subtitle, then slide up curtain
         const exitTimer = setTimeout(() => {
           setIsExiting(true);
           const completeTimer = setTimeout(() => {
             if (onComplete) onComplete();
-          }, 750);
+          }, 700);
           return () => clearTimeout(completeTimer);
-        }, 900);
+        }, 800);
 
         return () => clearTimeout(exitTimer);
       }
-    }, 220); // Snappy 220ms per word
+    }, 200);
 
     return () => clearInterval(intervalId);
   }, [onComplete]);
 
-  // Click anywhere to skip instantly
   const handleSkip = () => {
     setIsExiting(true);
     setTimeout(() => {
       if (onComplete) onComplete();
-    }, 350);
+    }, 300);
   };
 
   const currentDisplayWord = cyclingWords[currentIndex];
@@ -74,7 +61,7 @@ export const CinematicLoader = ({ onComplete }) => {
         position: 'fixed',
         inset: 0,
         zIndex: 99999,
-        backgroundColor: '#06070a',
+        backgroundColor: '#05070A',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
@@ -82,11 +69,28 @@ export const CinematicLoader = ({ onComplete }) => {
         overflow: 'hidden',
         cursor: 'pointer',
         transform: isExiting ? 'translateY(-100%)' : 'translateY(0)',
-        transition: 'transform 0.75s cubic-bezier(0.77, 0, 0.175, 1)',
+        transition: 'transform 0.7s cubic-bezier(0.77, 0, 0.175, 1)',
         willChange: 'transform',
       }}
     >
-      {/* Top Header Row */}
+      {/* Atmospheric glow */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '40%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '600px',
+          height: '300px',
+          background: 'radial-gradient(ellipse at center, rgba(22, 119, 255, 0.15) 0%, transparent 70%)',
+          filter: 'blur(60px)',
+          pointerEvents: 'none',
+          opacity: isLocked ? 1 : 0.4,
+          transition: 'opacity 0.5s ease',
+        }}
+      />
+
+      {/* Top header */}
       <div
         style={{
           display: 'flex',
@@ -94,26 +98,28 @@ export const CinematicLoader = ({ onComplete }) => {
           justifyContent: 'space-between',
           width: '100%',
           opacity: isExiting ? 0 : 1,
-          transition: 'opacity 0.25s ease',
+          transition: 'opacity 0.2s ease',
+          position: 'relative',
+          zIndex: 2,
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <span
             style={{
               display: 'inline-block',
-              width: '8px',
-              height: '8px',
+              width: '6px',
+              height: '6px',
               borderRadius: '50%',
-              backgroundColor: '#ffffff',
-              boxShadow: '0 0 10px rgba(255, 255, 255, 0.8)',
+              backgroundColor: 'var(--accent-cyan)',
+              boxShadow: '0 0 8px rgba(0, 229, 255, 0.6)',
             }}
           />
           <span
             style={{
               fontFamily: 'var(--font-mono)',
-              fontSize: '0.8rem',
-              letterSpacing: '0.12em',
-              color: 'rgba(255, 255, 255, 0.75)',
+              fontSize: '0.72rem',
+              letterSpacing: '0.1em',
+              color: 'var(--text-secondary)',
               textTransform: 'uppercase',
             }}
           >
@@ -124,18 +130,18 @@ export const CinematicLoader = ({ onComplete }) => {
         <div
           style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '0.8rem',
-            letterSpacing: '0.12em',
-            color: '#ffffff',
+            fontSize: '0.72rem',
+            letterSpacing: '0.1em',
+            color: 'var(--text-secondary)',
             fontWeight: '600',
             textTransform: 'uppercase',
           }}
         >
-          FOUNDRIX 2026
+          2026
         </div>
       </div>
 
-      {/* Center Stage: Wordmark & Cycling */}
+      {/* Center: Wordmark */}
       <div
         style={{
           position: 'relative',
@@ -145,60 +151,56 @@ export const CinematicLoader = ({ onComplete }) => {
           justifyContent: 'center',
           width: '100%',
           margin: 'auto',
-          transform: isExiting ? 'translateY(-30px) scale(0.96)' : 'translateY(0) scale(1)',
-          transition: 'transform 0.75s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.4s ease',
+          zIndex: 2,
+          transform: isExiting ? 'translateY(-20px) scale(0.97)' : 'translateY(0) scale(1)',
+          transition: 'transform 0.7s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.35s ease',
           opacity: isExiting ? 0 : 1,
         }}
       >
-        {/* Main Central Typography */}
         <h1
           key={currentDisplayWord}
           style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize:
-              currentDisplayWord === 'FOUNDRIX'
-                ? 'clamp(5rem, 16vw, 12.5rem)'
-                : 'clamp(3.8rem, 12vw, 9rem)',
-            fontWeight: '900',
-            lineHeight: '0.9',
-            letterSpacing: '0.04em',
+            fontFamily: 'var(--font-display)',
+            fontSize: currentDisplayWord === 'FOUNDRIX'
+              ? 'clamp(3.5rem, 14vw, 10rem)'
+              : 'clamp(2.8rem, 10vw, 7rem)',
+            fontWeight: '800',
+            lineHeight: '0.95',
+            letterSpacing: '-0.02em',
             color: '#ffffff',
             textTransform: 'uppercase',
             margin: 0,
             textAlign: 'center',
             userSelect: 'none',
-            textShadow: '0 4px 30px rgba(0, 0, 0, 0.95)',
-            animation: 'wordPop 0.22s ease-out forwards',
+            animation: 'loaderWordReveal 0.2s ease-out forwards',
           }}
         >
           {currentDisplayWord}
         </h1>
 
-        {/* Phase 2 & 3 Subtitle: Revealed when locked on FOUNDRIX */}
+        {/* Subtitle - visible when locked */}
         <div
           style={{
-            marginTop: '18px',
+            marginTop: '16px',
             fontFamily: 'var(--font-mono)',
-            fontSize: 'clamp(0.75rem, 1.6vw, 1.05rem)',
-            fontWeight: '700',
-            letterSpacing: '0.22em',
-            color: 'rgba(255, 255, 255, 0.9)',
+            fontSize: 'clamp(0.65rem, 1.4vw, 0.9rem)',
+            fontWeight: '500',
+            letterSpacing: '0.18em',
+            color: 'var(--text-secondary)',
             textTransform: 'uppercase',
             display: 'flex',
             alignItems: 'center',
-            gap: '12px',
+            gap: '10px',
             opacity: isLocked ? 1 : 0,
-            transform: isLocked ? 'translateY(0)' : 'translateY(10px)',
-            transition: 'opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+            transform: isLocked ? 'translateY(0)' : 'translateY(8px)',
+            transition: 'opacity 0.4s ease 0.1s, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s',
           }}
         >
-          <span>THE FLAGSHIP TECH SUMMIT</span>
-          <span style={{ color: 'rgba(255, 255, 255, 0.35)' }}>•</span>
-          <span style={{ color: '#ffffff' }}>2026</span>
+          <span>ENTREPRENEURSHIP & TECH SUMMIT</span>
         </div>
       </div>
 
-      {/* Bottom Footer Row: Click to Enter */}
+      {/* Bottom footer */}
       <div
         style={{
           display: 'flex',
@@ -206,49 +208,45 @@ export const CinematicLoader = ({ onComplete }) => {
           justifyContent: 'space-between',
           width: '100%',
           opacity: isExiting ? 0 : 1,
-          transition: 'opacity 0.25s ease',
+          transition: 'opacity 0.2s ease',
+          position: 'relative',
+          zIndex: 2,
         }}
       >
         <div
           style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '0.72rem',
-            color: 'rgba(255, 255, 255, 0.4)',
+            fontSize: '0.68rem',
+            color: 'var(--text-muted)',
             letterSpacing: '0.08em',
             textTransform: 'uppercase',
           }}
         >
-          OCTOBER 9 & 10 • VISAKHAPATNAM
+          9–10 OCTOBER • VISAKHAPATNAM
         </div>
 
         <div
           style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '0.75rem',
-            color: 'rgba(255, 255, 255, 0.65)',
-            letterSpacing: '0.08em',
+            fontSize: '0.68rem',
+            color: 'var(--text-secondary)',
+            letterSpacing: '0.06em',
             textTransform: 'uppercase',
-            padding: '7px 16px',
-            borderRadius: '999px',
-            border: '1px solid rgba(255, 255, 255, 0.18)',
-            backgroundColor: 'rgba(255, 255, 255, 0.04)',
+            padding: '6px 14px',
+            borderRadius: 'var(--radius-sm)',
+            border: '1px solid rgba(148, 163, 184, 0.15)',
+            backgroundColor: 'rgba(255, 255, 255, 0.03)',
             transition: 'all 0.2s ease',
           }}
         >
-          CLICK TO ENTER ↗
+          CLICK TO ENTER →
         </div>
       </div>
 
       <style>{`
-        @keyframes wordPop {
-          0% {
-            opacity: 0.3;
-            transform: scale(0.97);
-          }
-          100% {
-            opacity: 1;
-            transform: scale(1);
-          }
+        @keyframes loaderWordReveal {
+          0% { opacity: 0.2; transform: scale(0.98); filter: blur(4px); }
+          100% { opacity: 1; transform: scale(1); filter: blur(0); }
         }
       `}</style>
     </div>

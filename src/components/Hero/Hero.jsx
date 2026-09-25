@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Calendar, ArrowUpRight, Users, Sparkles, Trophy, Lightbulb, Ticket } from 'lucide-react';
+import { ArrowUpRight, Users, Calendar, MapPin } from 'lucide-react';
 import { EVENT_DATA } from '../../data/event';
 import FlipClock from '../Common/FlipClock';
 
@@ -14,48 +14,53 @@ export const Hero = ({ onRegisterClick, onOpenHackathonHub }) => {
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
-        paddingTop: '30px',
-        paddingBottom: '20px',
+        justifyContent: 'center',
+        paddingTop: '100px',
+        paddingBottom: '40px',
         overflow: 'hidden',
-        background: '#060709',
+        background: '#05070A',
       }}
     >
-      {/* Background: Grand Keynote Arena Stage & Tech Summit Keynote Auditorium */}
+      {/* Background image with cinematic overlay */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
           backgroundImage: `
-            linear-gradient(180deg, rgba(6, 7, 9, 0.5) 0%, rgba(6, 7, 9, 0.2) 30%, rgba(6, 7, 9, 0.65) 75%, #060709 100%),
+            linear-gradient(180deg,
+              rgba(5, 7, 10, 0.6) 0%,
+              rgba(5, 7, 10, 0.3) 30%,
+              rgba(5, 7, 10, 0.5) 65%,
+              #05070A 100%
+            ),
             url('/assets/hero-bg.jpg')
           `,
           backgroundSize: 'cover',
           backgroundPosition: 'center 35%',
           backgroundRepeat: 'no-repeat',
-          opacity: 0.95,
+          opacity: 0.9,
           zIndex: 0,
         }}
       />
 
-      {/* Atmospheric Stage Glow behind Title & CTAs */}
+      {/* Atmospheric blue glow */}
       <div
         style={{
           position: 'absolute',
-          top: '35%',
+          top: '30%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: '850px',
+          width: '800px',
           maxWidth: '100%',
-          height: '350px',
-          background: 'radial-gradient(ellipse at center, rgba(20, 110, 245, 0.35) 0%, rgba(0, 240, 255, 0.15) 45%, transparent 75%)',
-          filter: 'blur(70px)',
+          height: '400px',
+          background: 'radial-gradient(ellipse at center, rgba(22, 119, 255, 0.2) 0%, rgba(0, 229, 255, 0.08) 40%, transparent 70%)',
+          filter: 'blur(80px)',
           zIndex: 1,
           pointerEvents: 'none',
         }}
       />
 
-      {/* Main Hero Center Content */}
+      {/* Main content */}
       <div
         className="container"
         style={{
@@ -65,69 +70,108 @@ export const Hero = ({ onRegisterClick, onOpenHackathonHub }) => {
           flexDirection: 'column',
           alignItems: 'center',
           textAlign: 'center',
-          margin: 'auto',
-          paddingTop: '20px',
-          paddingBottom: '30px',
+          gap: '28px',
         }}
       >
-        {/* Top Association Pill */}
+        {/* Association badge */}
         <div
           className="pill-badge"
           style={{
-            marginBottom: '18px',
-            backgroundColor: 'rgba(9, 14, 28, 0.8)',
-            borderColor: 'rgba(0, 240, 255, 0.4)',
-            boxShadow: '0 0 20px rgba(20, 110, 245, 0.35)',
+            borderColor: 'rgba(22, 119, 255, 0.3)',
+            boxShadow: '0 0 16px rgba(22, 119, 255, 0.15)',
             backdropFilter: 'blur(16px)',
           }}
         >
-          <Sparkles size={14} color="var(--accent-cyan)" />
-          <span style={{ color: 'var(--accent-cyan)', letterSpacing: '0.12em', textTransform: 'uppercase', fontSize: '0.75rem', fontWeight: '700' }}>
-            PRESENTED BY STUDENTS OF RAGHU ENGINEERING COLLEGE
+          <span
+            style={{
+              color: 'var(--accent-cyan)',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              fontSize: '0.7rem',
+              fontWeight: '600',
+            }}
+          >
+            Presented by Students of Raghu Engineering College
           </span>
         </div>
 
-        {/* Monumental Bebas Neue Condensed Headline */}
-        <div style={{ marginBottom: '20px', width: '100%' }}>
+        {/* Main headline */}
+        <div style={{ width: '100%', maxWidth: '900px' }}>
           <h1
             style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(2.5rem, 11vw, 8.8rem)',
-              fontWeight: '900',
-              lineHeight: '0.88',
-              letterSpacing: '0.01em',
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(2.8rem, 8vw, 6rem)',
+              fontWeight: '800',
+              lineHeight: '0.95',
+              letterSpacing: '-0.03em',
               color: '#ffffff',
-              textTransform: 'uppercase',
-              textShadow: '0 8px 40px rgba(0, 0, 0, 0.95), 0 0 70px rgba(20, 110, 245, 0.45)',
               margin: 0,
-              wordBreak: 'break-word',
+              textShadow: '0 4px 40px rgba(0, 0, 0, 0.8)',
             }}
           >
-            FOUNDRIX 2026:
+            FOUNDRIX 2026
           </h1>
 
           <div
             style={{
               fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(2.1rem, 9.5vw, 7.8rem)',
-              fontWeight: '900',
-              lineHeight: '0.9',
-              letterSpacing: '0.02em',
-              color: '#ffffff',
+              fontSize: 'clamp(1.1rem, 3vw, 2rem)',
+              fontWeight: '600',
+              lineHeight: '1.2',
+              letterSpacing: '0.04em',
+              color: 'var(--text-secondary)',
+              marginTop: '12px',
               textTransform: 'uppercase',
-              textShadow: '0 8px 40px rgba(0, 0, 0, 0.95)',
-              marginTop: '4px',
-              wordBreak: 'break-word',
             }}
           >
-            ENTREPRENEURSHIP & TECH SUMMIT
+            Entrepreneurship & Tech Summit
           </div>
         </div>
 
-        {/* 3D Mechanical Split-Flap / Flip Clock Countdown */}
+        {/* Date & Location pills */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}>
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.75rem',
+              fontWeight: '500',
+              color: 'var(--text-secondary)',
+              padding: '6px 12px',
+              borderRadius: 'var(--radius-full)',
+              backgroundColor: 'rgba(255, 255, 255, 0.04)',
+              border: '1px solid rgba(148, 163, 184, 0.1)',
+            }}
+          >
+            <Calendar size={13} color="var(--accent-cyan)" />
+            <span>{hero.dates}</span>
+          </div>
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.75rem',
+              fontWeight: '500',
+              color: 'var(--text-secondary)',
+              padding: '6px 12px',
+              borderRadius: 'var(--radius-full)',
+              backgroundColor: 'rgba(255, 255, 255, 0.04)',
+              border: '1px solid rgba(148, 163, 184, 0.1)',
+            }}
+          >
+            <MapPin size={13} color="var(--accent-cyan)" />
+            <span>Raghu Engineering College, Visakhapatnam</span>
+          </div>
+        </div>
+
+        {/* Countdown */}
         <FlipClock targetDate={hero.targetDate} />
 
-        {/* Radiant Electric Blue Button + Team Hub Button */}
+        {/* CTA Buttons */}
         <div
           className="hero-cta-group"
           style={{
@@ -135,227 +179,152 @@ export const Hero = ({ onRegisterClick, onOpenHackathonHub }) => {
             flexWrap: 'wrap',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '16px',
-            marginBottom: '15px',
+            gap: '14px',
             width: '100%',
           }}
         >
-          {/* REGISTER Button */}
           <button
             onClick={onRegisterClick}
+            className="btn-border-beam"
             style={{
-              background: 'linear-gradient(180deg, #1872f8 0%, #0d4fae 100%)',
-              border: '1.5px solid rgba(0, 240, 255, 0.7)',
-              borderRadius: '9999px',
-              padding: '14px 38px',
-              color: '#ffffff',
-              fontSize: '1.02rem',
-              fontWeight: '800',
-              fontFamily: 'var(--font-body)',
-              letterSpacing: '0.06em',
-              textTransform: 'uppercase',
-              cursor: 'pointer',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '10px',
-              boxShadow: '0 8px 28px rgba(20, 110, 245, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
-              transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
-              e.currentTarget.style.boxShadow = '0 12px 35px rgba(20, 110, 245, 0.65), 0 0 20px rgba(0, 240, 255, 0.4)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'none';
-              e.currentTarget.style.boxShadow = '0 8px 28px rgba(20, 110, 245, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+              padding: '14px 32px',
+              fontSize: '0.9rem',
             }}
           >
-            <span>REGISTER</span>
-            <ArrowUpRight size={20} />
+            <span>Register Now</span>
+            <ArrowUpRight size={18} />
           </button>
 
-          {/* LOGIN Button */}
           <button
             onClick={onOpenHackathonHub}
+            className="btn-ghost-cyan"
             style={{
-              background: 'rgba(10, 14, 26, 0.8)',
-              border: '1.5px solid rgba(255, 255, 255, 0.22)',
-              borderRadius: '9999px',
-              padding: '14px 34px',
-              color: '#ffffff',
-              fontSize: '0.98rem',
-              fontWeight: '700',
-              fontFamily: 'var(--font-body)',
-              letterSpacing: '0.06em',
-              textTransform: 'uppercase',
-              cursor: 'pointer',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              backdropFilter: 'blur(14px)',
-              transition: 'all 0.25s ease',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(20, 110, 245, 0.2)';
-              e.currentTarget.style.borderColor = 'var(--accent-cyan)';
-              e.currentTarget.style.transform = 'translateY(-2px)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(10, 14, 26, 0.8)';
-              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.22)';
-              e.currentTarget.style.transform = 'none';
+              padding: '14px 28px',
+              fontSize: '0.88rem',
             }}
           >
-            <Users size={18} color="var(--accent-cyan)" />
-            <span>LOGIN</span>
+            <Users size={17} color="var(--accent-cyan)" />
+            <span>Login</span>
           </button>
         </div>
 
-        {/* Micro Subtitle */}
+        {/* Micro info */}
         <p
           style={{
             color: 'var(--text-muted)',
-            fontSize: '0.82rem',
+            fontSize: '0.78rem',
             fontFamily: 'var(--font-mono)',
-            letterSpacing: '0.05em',
-            marginTop: '6px',
+            letterSpacing: '0.04em',
           }}
         >
-          ₹799 ALL-INCLUSIVE PASS • 2-DAY WORKSHOP + ONLINE HACKATHON + SWAGS + CERTIFICATES
+          ₹799 ALL-INCLUSIVE PASS • WORKSHOP + HACKATHON + SWAGS + CERTIFICATES
         </p>
       </div>
 
-      {/* Concept Lower-Third Bento Preview Cards (Hackathon, Workshop, Pass Perks) */}
+      {/* Bottom preview cards */}
       <div
         className="container"
         style={{
           position: 'relative',
           zIndex: 2,
-          width: '100%',
           marginTop: 'auto',
+          paddingTop: '32px',
         }}
       >
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
-            gap: '16px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))',
+            gap: '12px',
           }}
         >
-          {/* Pillar 1: Online Hackathon */}
+          {/* Hackathon card */}
           <div
             onClick={onOpenHackathonHub}
-            className="horizontal-snap-item glass-card"
+            className="glass-card"
             style={{
-              background: 'linear-gradient(180deg, rgba(16, 24, 44, 0.85) 0%, rgba(9, 13, 24, 0.95) 100%)',
-              border: '1px solid rgba(0, 240, 255, 0.35)',
-              borderRadius: '16px 16px 0 0',
-              padding: '20px 24px',
-              backdropFilter: 'blur(20px)',
+              padding: '18px 20px',
               cursor: 'pointer',
+              borderColor: 'rgba(22, 119, 255, 0.2)',
               transition: 'all 0.3s ease',
-              boxShadow: '0 -8px 24px rgba(0, 0, 0, 0.5)',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-4px)';
-              e.currentTarget.style.borderColor = 'var(--accent-cyan)';
-              e.currentTarget.style.boxShadow = '0 -10px 30px rgba(0, 240, 255, 0.25)';
+              e.currentTarget.style.borderColor = 'rgba(22, 119, 255, 0.4)';
+              e.currentTarget.style.transform = 'translateY(-3px)';
             }}
             onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(22, 119, 255, 0.2)';
               e.currentTarget.style.transform = 'none';
-              e.currentTarget.style.borderColor = 'rgba(0, 240, 255, 0.35)';
-              e.currentTarget.style.boxShadow = '0 -8px 24px rgba(0, 0, 0, 0.5)';
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Trophy size={18} color="var(--accent-cyan)" />
-                <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1.4rem', color: '#ffffff', letterSpacing: '0.04em' }}>
-                  ONLINE HACKATHON
-                </span>
-              </div>
-              <ArrowUpRight size={16} color="var(--accent-cyan)" />
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
+              <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1rem', fontWeight: '600', color: '#ffffff' }}>
+                Online Hackathon
+              </span>
+              <ArrowUpRight size={14} color="var(--accent-cyan)" />
             </div>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.84rem', lineHeight: '1.4', margin: 0 }}>
-              Build sprint before summit • 3–4 members • Pitch live on Day 1 (9 Oct)
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.78rem', lineHeight: '1.4', margin: 0 }}>
+              Build sprint • 3–4 members • Pitch live on Day 1
             </p>
           </div>
 
-          {/* Pillar 2: Entrepreneurship Workshop */}
+          {/* Workshop card */}
           <div
             onClick={onRegisterClick}
-            className="horizontal-snap-item glass-card"
+            className="glass-card"
             style={{
-              background: 'linear-gradient(180deg, rgba(16, 24, 44, 0.85) 0%, rgba(9, 13, 24, 0.95) 100%)',
-              border: '1px solid rgba(20, 110, 245, 0.45)',
-              borderRadius: '16px 16px 0 0',
-              padding: '20px 24px',
-              backdropFilter: 'blur(20px)',
+              padding: '18px 20px',
               cursor: 'pointer',
+              borderColor: 'rgba(0, 229, 255, 0.15)',
               transition: 'all 0.3s ease',
-              boxShadow: '0 -8px 24px rgba(0, 0, 0, 0.5)',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-4px)';
-              e.currentTarget.style.borderColor = '#1872f8';
-              e.currentTarget.style.boxShadow = '0 -10px 30px rgba(20, 110, 245, 0.35)';
+              e.currentTarget.style.borderColor = 'rgba(0, 229, 255, 0.35)';
+              e.currentTarget.style.transform = 'translateY(-3px)';
             }}
             onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(0, 229, 255, 0.15)';
               e.currentTarget.style.transform = 'none';
-              e.currentTarget.style.borderColor = 'rgba(20, 110, 245, 0.45)';
-              e.currentTarget.style.boxShadow = '0 -8px 24px rgba(0, 0, 0, 0.5)';
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Lightbulb size={18} color="#1872f8" />
-                <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1.4rem', color: '#ffffff', letterSpacing: '0.04em' }}>
-                  2-DAY WORKSHOP
-                </span>
-              </div>
-              <ArrowUpRight size={16} color="#1872f8" />
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
+              <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1rem', fontWeight: '600', color: '#ffffff' }}>
+                2-Day Workshop
+              </span>
+              <ArrowUpRight size={14} color="var(--accent-blue)" />
             </div>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.84rem', lineHeight: '1.4', margin: 0 }}>
-              Hands-on startup, tech & MVP masterclasses inside REC campus auditorium
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.78rem', lineHeight: '1.4', margin: 0 }}>
+              Hands-on startup & tech masterclasses at REC campus
             </p>
           </div>
 
-          {/* Pillar 3: All-Inclusive ₹799 Pass */}
+          {/* Pass card */}
           <div
             onClick={onRegisterClick}
-            className="horizontal-snap-item glass-card"
+            className="glass-card"
             style={{
-              background: 'linear-gradient(180deg, rgba(16, 24, 44, 0.85) 0%, rgba(9, 13, 24, 0.95) 100%)',
-              border: '1px solid rgba(251, 191, 36, 0.4)',
-              borderRadius: '16px 16px 0 0',
-              padding: '20px 24px',
-              backdropFilter: 'blur(20px)',
+              padding: '18px 20px',
               cursor: 'pointer',
+              borderColor: 'rgba(22, 119, 255, 0.15)',
               transition: 'all 0.3s ease',
-              boxShadow: '0 -8px 24px rgba(0, 0, 0, 0.5)',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-4px)';
-              e.currentTarget.style.borderColor = 'var(--accent-gold)';
-              e.currentTarget.style.boxShadow = '0 -10px 30px rgba(251, 191, 36, 0.3)';
+              e.currentTarget.style.borderColor = 'rgba(22, 119, 255, 0.35)';
+              e.currentTarget.style.transform = 'translateY(-3px)';
             }}
             onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(22, 119, 255, 0.15)';
               e.currentTarget.style.transform = 'none';
-              e.currentTarget.style.borderColor = 'rgba(251, 191, 36, 0.4)';
-              e.currentTarget.style.boxShadow = '0 -8px 24px rgba(0, 0, 0, 0.5)';
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Ticket size={18} color="var(--accent-gold)" />
-                <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1.4rem', color: '#ffffff', letterSpacing: '0.04em' }}>
-                  ALL-IN-ONE PASS — ₹799
-                </span>
-              </div>
-              <ArrowUpRight size={16} color="var(--accent-gold)" />
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
+              <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1rem', fontWeight: '600', color: '#ffffff' }}>
+                All-In-One Pass — ₹799
+              </span>
+              <ArrowUpRight size={14} color="var(--accent-blue)" />
             </div>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.84rem', lineHeight: '1.4', margin: 0 }}>
-              Workshop + Hackathon + Swags + Verified Certificates
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.78rem', lineHeight: '1.4', margin: 0 }}>
+              Workshop + Hackathon + Swags + Certificates
             </p>
           </div>
         </div>

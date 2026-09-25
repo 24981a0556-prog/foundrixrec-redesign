@@ -1,212 +1,153 @@
 /* ==========================================================================
-   FOUNDRIX 2026 — Kinetic Animations & Button Micro-Interactions
-   Border Beam Glow, Magnetic Hover, Ripples & Screen Transitions
+   FOUNDRIX 2026 — Animations & Micro-Interactions
+   Professional, restrained, purposeful motion design
    ========================================================================== */
 
-/* 1. Electric Border Beam Animation with Ambient Pulse & Shimmer */
+/* ── 1. Primary CTA Button — Border Beam ── */
 .btn-border-beam {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 16px 32px;
-  border-radius: var(--radius-full);
+  padding: 14px 28px;
+  border-radius: var(--radius-sm);
   font-family: var(--font-body);
-  font-weight: 800;
-  font-size: 0.95rem;
+  font-weight: 700;
+  font-size: 0.88rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   color: #ffffff;
-  background: linear-gradient(180deg, #146ef5 0%, #0d47a1 100%);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: linear-gradient(180deg, var(--accent-blue) 0%, #0d57c9 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   cursor: pointer;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 4px 20px rgba(20, 110, 245, 0.45), 0 0 15px rgba(0, 240, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px rgba(22, 119, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   text-decoration: none;
-  animation: btnGlowPulse 4s ease-in-out infinite alternate;
-}
-
-@keyframes btnGlowPulse {
-  0% {
-    box-shadow: 0 4px 20px rgba(20, 110, 245, 0.4), 0 0 15px rgba(0, 240, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  }
-  100% {
-    box-shadow: 0 6px 28px rgba(20, 110, 245, 0.65), 0 0 32px rgba(0, 240, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  }
 }
 
 .btn-border-beam::before {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: conic-gradient(
-    transparent,
-    transparent 55%,
-    rgba(0, 240, 255, 0.95) 75%,
-    #ffffff 90%,
-    transparent 100%
-  );
-  animation: rotateBeam 3.5s linear infinite;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transform: skewX(-20deg);
+  animation: btnShimmer 4s ease-in-out infinite;
   pointer-events: none;
-  opacity: 0.9;
 }
 
-.btn-border-beam::after {
-  content: '';
-  position: absolute;
-  inset: 2px;
-  background: linear-gradient(180deg, #1360d9 0%, #0a3d8f 100%);
-  border-radius: var(--radius-full);
-  z-index: 1;
-  transition: background 0.3s ease;
+@keyframes btnShimmer {
+  0%, 70% { left: -100%; }
+  100% { left: 200%; }
 }
 
 .btn-border-beam span,
 .btn-border-beam svg {
   position: relative;
   z-index: 2;
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-border-beam:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 10px 35px rgba(20, 110, 245, 0.8), 0 0 45px rgba(0, 240, 255, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-}
-
-.btn-border-beam:hover::after {
-  background: linear-gradient(180deg, #1a75ff 0%, #0d4aa6 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(22, 119, 255, 0.5), 0 0 20px rgba(0, 229, 255, 0.2);
+  background: linear-gradient(180deg, var(--accent-blue-bright) 0%, var(--accent-blue) 100%);
 }
 
 .btn-border-beam:hover svg {
-  transform: translateX(5px) scale(1.1);
+  transform: translateX(3px);
 }
 
 .btn-border-beam:active {
-  transform: translateY(1px) scale(0.97);
+  transform: translateY(1px) scale(0.98);
 }
 
-@keyframes rotateBeam {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* 2. Secondary Ghost Button with Neon Shimmer Sheen */
+/* ── 2. Ghost/Secondary Button — Cyan ── */
 .btn-ghost-cyan {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 15px 28px;
-  border-radius: var(--radius-full);
+  padding: 14px 24px;
+  border-radius: var(--radius-sm);
   font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 0.9rem;
-  letter-spacing: 0.06em;
+  font-weight: 600;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
   color: var(--accent-cyan);
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.08) 0%, rgba(20, 110, 245, 0.12) 100%);
-  border: 1px solid rgba(0, 240, 255, 0.45);
+  background: rgba(0, 229, 255, 0.06);
+  border: 1px solid rgba(0, 229, 255, 0.25);
   cursor: pointer;
   overflow: hidden;
   text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 0 15px rgba(0, 240, 255, 0.12);
-}
-
-.btn-ghost-cyan::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.3), transparent);
-  transform: skewX(-25deg);
-  animation: ghostShine 3.5s infinite;
-}
-
-@keyframes ghostShine {
-  0%, 65% { left: -100%; }
-  100% { left: 200%; }
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(8px);
 }
 
 .btn-ghost-cyan span,
 .btn-ghost-cyan svg {
   position: relative;
   z-index: 2;
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.3s ease;
 }
 
 .btn-ghost-cyan:hover {
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.22) 0%, rgba(20, 110, 245, 0.3) 100%);
-  border-color: #00f0ff;
+  background: rgba(0, 229, 255, 0.12);
+  border-color: var(--accent-cyan);
   color: #ffffff;
-  transform: translateY(-3px) scale(1.025);
-  box-shadow: 0 8px 30px rgba(0, 240, 255, 0.45), 0 0 20px rgba(20, 110, 245, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 229, 255, 0.2), 0 0 12px rgba(22, 119, 255, 0.15);
 }
 
 .btn-ghost-cyan:hover svg {
-  transform: translateX(4px) scale(1.1);
+  transform: translateX(3px);
 }
 
 .btn-ghost-cyan:active {
-  transform: translateY(1px) scale(0.97);
+  transform: translateY(1px) scale(0.98);
 }
 
-/* 3. Universal Micro-Interactions for All Interactive Buttons */
+/* ── 3. Universal Button Interactions ── */
 button:not(:disabled) {
-  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-button:not(:disabled):hover {
-  filter: brightness(1.08);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 button:not(:disabled):active {
-  transform: scale(0.96) translateY(1px) !important;
+  transform: scale(0.97) translateY(1px) !important;
 }
 
-/* 3. Pulse Glow Animation */
+/* ── 4. Glow Pulse ── */
 .glow-pulse {
-  animation: pulseGlow 3s ease-in-out infinite alternate;
+  animation: pulseGlow 4s ease-in-out infinite alternate;
 }
 
 @keyframes pulseGlow {
-  0% {
-    box-shadow: 0 0 15px rgba(20, 110, 245, 0.3);
-  }
-  100% {
-    box-shadow: 0 0 35px rgba(0, 240, 255, 0.6), 0 0 60px rgba(20, 110, 245, 0.3);
-  }
+  0% { box-shadow: 0 0 12px rgba(22, 119, 255, 0.2); }
+  100% { box-shadow: 0 0 28px rgba(0, 229, 255, 0.4), 0 0 48px rgba(22, 119, 255, 0.15); }
 }
 
-/* 4. Float Animation */
+/* ── 5. Float Animation ── */
 .animate-float {
-  animation: gentleFloat 4s ease-in-out infinite alternate;
+  animation: gentleFloat 5s ease-in-out infinite alternate;
 }
 
 @keyframes gentleFloat {
-  0% { transform: translateY(0px); }
-  100% { transform: translateY(-8px); }
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-6px); }
 }
 
-/* 5. Shimmer Sweep */
+/* ── 6. Shimmer Text ── */
 .shimmer-text {
-  background: linear-gradient(
-    90deg,
-    #ffffff 0%,
-    var(--accent-cyan) 50%,
-    #ffffff 100%
-  );
+  background: linear-gradient(90deg, #ffffff 0%, var(--accent-cyan) 50%, #ffffff 100%);
   background-size: 200% auto;
   color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-  animation: shimmerSweep 3s linear infinite;
+  animation: shimmerSweep 4s linear infinite;
 }
 
 @keyframes shimmerSweep {
@@ -214,14 +155,14 @@ button:not(:disabled):active {
   100% { background-position: 200% 0; }
 }
 
-/* 6. Mobile Horizontal Scroll Snap */
+/* ── 7. Mobile Horizontal Snap ── */
 .horizontal-snap-container {
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   gap: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 16px;
   scrollbar-width: none;
 }
 
@@ -231,12 +172,12 @@ button:not(:disabled):active {
 
 .horizontal-snap-item {
   scroll-snap-align: center;
-  flex: 0 0 calc(100% - 40px);
+  flex: 0 0 calc(100% - 32px);
 }
 
 @media (min-width: 768px) {
   .horizontal-snap-item {
-    flex: 0 0 calc(50% - 15px);
+    flex: 0 0 calc(50% - 12px);
   }
 }
 
@@ -251,11 +192,11 @@ button:not(:disabled):active {
   }
 }
 
-/* 7. Modal Backdrop & Fade */
+/* ── 8. Modal Backdrop ── */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(4, 6, 12, 0.85);
+  background: rgba(5, 7, 10, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   z-index: 1000;
@@ -267,14 +208,14 @@ button:not(:disabled):active {
 }
 
 .modal-content {
-  background: #0c0f18;
+  background: var(--bg-surface);
   border: 1px solid var(--border-glow);
   border-radius: var(--radius-lg);
   max-width: 600px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 40px rgba(20, 110, 245, 0.25);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 40px rgba(22, 119, 255, 0.15);
   animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -285,7 +226,7 @@ button:not(:disabled):active {
   }
   .modal-content {
     max-height: calc(100dvh - 24px);
-    border-radius: 16px;
+    border-radius: 14px;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
   }
@@ -298,9 +239,9 @@ button:not(:disabled):active {
   }
   .hero-cta-group button {
     width: 100% !important;
-    max-width: 320px !important;
+    max-width: 340px !important;
     justify-content: center !important;
-    padding: 13px 24px !important;
+    padding: 14px 24px !important;
   }
   .schedule-tabs-wrapper {
     flex-direction: column !important;
@@ -312,7 +253,7 @@ button:not(:disabled):active {
     max-width: 360px !important;
     justify-content: center !important;
     padding: 10px 18px !important;
-    font-size: 1.05rem !important;
+    font-size: 1rem !important;
   }
 }
 
@@ -322,36 +263,32 @@ button:not(:disabled):active {
 }
 
 @keyframes scaleUp {
-  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
   to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* ==========================================================================
-   8. Scroll Progress Indicator (Top Dynamic Beam)
-   ========================================================================== */
+/* ── 9. Scroll Progress Bar ── */
 .scroll-progress-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.05);
+  height: 2px;
+  background: rgba(255, 255, 255, 0.03);
   z-index: 9999;
   pointer-events: none;
 }
 
 .scroll-progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, #146ef5 0%, #00f0ff 60%, #ffffff 100%);
-  box-shadow: 0 0 14px rgba(0, 240, 255, 0.9), 0 0 5px #146ef5;
+  background: linear-gradient(90deg, var(--accent-blue) 0%, var(--accent-cyan) 100%);
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
   transition: width 0.08s linear;
 }
 
-/* ==========================================================================
-   9. Kinetic Reveal-On-Scroll Animations (Bidirectional: Up & Down)
-   ========================================================================== */
+/* ── 10. Scroll Reveal Animations ── */
 
-/* Guarantee Hero is always 100% visible and never blank */
+/* Hero always visible */
 #hero,
 #hero *,
 #hero .reveal-on-scroll,
@@ -362,144 +299,112 @@ button:not(:disabled):active {
   visibility: visible !important;
 }
 
-/* --- Standard / Initial Base States --- */
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 .reveal-scale {
   opacity: 0;
-  transform: scale(0.92);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(0.94);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 .reveal-from-left {
   opacity: 0;
-  transform: translateX(-50px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-40px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 .reveal-from-right {
   opacity: 0;
-  transform: translateX(50px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(40px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
-/* --- Upward Scroll Initial States (Elements entering from top when scrolling up) --- */
+/* Scroll direction states */
 .reveal-on-scroll.scroll-above:not(.is-revealed),
 body[data-scroll-dir="up"] .reveal-on-scroll:not(.is-revealed) {
-  opacity: 0;
-  transform: translateY(-40px);
+  opacity: 0; transform: translateY(-32px);
 }
-
 .reveal-scale.scroll-above:not(.is-revealed),
 body[data-scroll-dir="up"] .reveal-scale:not(.is-revealed) {
-  opacity: 0;
-  transform: scale(0.92) translateY(-25px);
+  opacity: 0; transform: scale(0.94) translateY(-20px);
 }
-
 .reveal-from-left.scroll-above:not(.is-revealed),
 body[data-scroll-dir="up"] .reveal-from-left:not(.is-revealed) {
-  opacity: 0;
-  transform: translateX(-40px) translateY(-25px);
+  opacity: 0; transform: translateX(-35px) translateY(-20px);
 }
-
 .reveal-from-right.scroll-above:not(.is-revealed),
 body[data-scroll-dir="up"] .reveal-from-right:not(.is-revealed) {
-  opacity: 0;
-  transform: translateX(40px) translateY(-25px);
+  opacity: 0; transform: translateX(35px) translateY(-20px);
 }
 
-/* --- Downward Scroll Initial States (Elements entering from bottom when scrolling down) --- */
 .reveal-on-scroll.scroll-below:not(.is-revealed),
 body[data-scroll-dir="down"] .reveal-on-scroll:not(.is-revealed) {
-  opacity: 0;
-  transform: translateY(40px);
+  opacity: 0; transform: translateY(32px);
 }
-
 .reveal-scale.scroll-below:not(.is-revealed),
 body[data-scroll-dir="down"] .reveal-scale:not(.is-revealed) {
-  opacity: 0;
-  transform: scale(0.92);
+  opacity: 0; transform: scale(0.94);
 }
-
 .reveal-from-left.scroll-below:not(.is-revealed),
 body[data-scroll-dir="down"] .reveal-from-left:not(.is-revealed) {
-  opacity: 0;
-  transform: translateX(-50px);
+  opacity: 0; transform: translateX(-40px);
 }
-
 .reveal-from-right.scroll-below:not(.is-revealed),
 body[data-scroll-dir="down"] .reveal-from-right:not(.is-revealed) {
-  opacity: 0;
-  transform: translateX(50px);
+  opacity: 0; transform: translateX(40px);
 }
 
-/* --- Revealed Active States (Applied smoothly when intersecting in either direction) --- */
-.reveal-on-scroll.is-revealed {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-}
+/* Revealed states */
+.reveal-on-scroll.is-revealed { opacity: 1 !important; transform: translateY(0) !important; }
+.reveal-scale.is-revealed { opacity: 1 !important; transform: scale(1) translateY(0) !important; }
+.reveal-from-left.is-revealed { opacity: 1 !important; transform: translateX(0) translateY(0) !important; }
+.reveal-from-right.is-revealed { opacity: 1 !important; transform: translateX(0) translateY(0) !important; }
 
-.reveal-scale.is-revealed {
-  opacity: 1 !important;
-  transform: scale(1) translateY(0) !important;
-}
+/* Stagger delays */
+.stagger-container > *:nth-child(1) { transition-delay: 50ms; }
+.stagger-container > *:nth-child(2) { transition-delay: 120ms; }
+.stagger-container > *:nth-child(3) { transition-delay: 190ms; }
+.stagger-container > *:nth-child(4) { transition-delay: 260ms; }
+.stagger-container > *:nth-child(5) { transition-delay: 330ms; }
+.stagger-container > *:nth-child(6) { transition-delay: 400ms; }
+.stagger-container > *:nth-child(7) { transition-delay: 470ms; }
 
-.reveal-from-left.is-revealed {
-  opacity: 1 !important;
-  transform: translateX(0) translateY(0) !important;
-}
-
-.reveal-from-right.is-revealed {
-  opacity: 1 !important;
-  transform: translateX(0) translateY(0) !important;
-}
-
-/* Staggered Children Delay */
-.stagger-container > *:nth-child(1) { transition-delay: 60ms; }
-.stagger-container > *:nth-child(2) { transition-delay: 140ms; }
-.stagger-container > *:nth-child(3) { transition-delay: 220ms; }
-.stagger-container > *:nth-child(4) { transition-delay: 300ms; }
-.stagger-container > *:nth-child(5) { transition-delay: 380ms; }
-.stagger-container > *:nth-child(6) { transition-delay: 460ms; }
-
-/* ==========================================================================
-   10. Continuous Infinite Marquee Ribbons
-   ========================================================================== */
+/* ── 11. Marquee Ribbons ── */
 .marquee-ribbon {
   width: 100%;
   overflow: hidden;
   user-select: none;
   position: relative;
-  padding: 16px 0;
-  background: rgba(10, 14, 26, 0.7);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
+  padding: 14px 0;
+  background: rgba(7, 17, 31, 0.8);
+  border-top: 1px solid rgba(22, 119, 255, 0.1);
+  border-bottom: 1px solid rgba(22, 119, 255, 0.1);
+  backdrop-filter: blur(8px);
+  mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
 }
 
 .marquee-content {
   display: flex;
   white-space: nowrap;
-  gap: 32px;
-  animation: marqueeLoop 24s linear infinite;
+  gap: 28px;
+  animation: marqueeLoop 28s linear infinite;
   will-change: transform;
 }
 
 .marquee-content-reverse {
   display: flex;
   white-space: nowrap;
-  gap: 32px;
-  animation: marqueeLoopReverse 28s linear infinite;
+  gap: 28px;
+  animation: marqueeLoopReverse 32s linear infinite;
   will-change: transform;
 }
 
@@ -521,43 +426,42 @@ body[data-scroll-dir="down"] .reveal-from-right:not(.is-revealed) {
 .marquee-item {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   font-family: var(--font-heading);
-  font-size: 1.45rem;
-  letter-spacing: 0.08em;
-  color: #ffffff;
+  font-size: clamp(0.85rem, 1.2vw, 1.1rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
   text-transform: uppercase;
 }
 
 .marquee-dot {
-  color: var(--accent-cyan);
-  font-size: 1rem;
+  color: var(--accent-blue);
+  font-size: 0.6rem;
 }
 
-/* ==========================================================================
-   11. Floating Cyber Scroll-To-Top Button
-   ========================================================================== */
+/* ── 12. Scroll-To-Top ── */
 .scroll-to-top {
   position: fixed;
   bottom: 85px;
-  right: 24px;
+  right: 20px;
   z-index: 99;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(8, 12, 24, 0.85);
-  border: 1px solid rgba(0, 240, 255, 0.4);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  color: #ffffff;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  background: rgba(11, 18, 32, 0.9);
+  border: 1px solid rgba(22, 119, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(20, 110, 245, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   opacity: 0;
-  transform: translateY(20px) scale(0.85);
+  transform: translateY(16px) scale(0.9);
   pointer-events: none;
 }
 
@@ -568,105 +472,69 @@ body[data-scroll-dir="down"] .reveal-from-right:not(.is-revealed) {
 }
 
 .scroll-to-top:hover {
-  transform: translateY(-4px) scale(1.08);
+  transform: translateY(-3px) scale(1.05);
   border-color: var(--accent-cyan);
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0, 240, 255, 0.6);
-  background: rgba(20, 110, 245, 0.3);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.6), 0 0 16px rgba(0, 229, 255, 0.3);
+  background: rgba(22, 119, 255, 0.2);
 }
 
 @media (max-width: 768px) {
   .scroll-to-top {
-    bottom: 80px;
-    right: 16px;
-    width: 44px;
-    height: 44px;
+    bottom: 78px;
+    right: 14px;
+    width: 40px;
+    height: 40px;
   }
 }
 
 .schedule-tab-btn:hover {
-  transform: translateY(-2px) scale(1.03) !important;
+  transform: translateY(-2px) scale(1.02) !important;
   border-color: var(--accent-cyan) !important;
-  box-shadow: 0 0 25px rgba(0, 240, 255, 0.45) !important;
+  box-shadow: 0 0 18px rgba(0, 229, 255, 0.3) !important;
 }
 
-/* ==========================================================================
-   9. Attendee Dashboard Mobile & Single-Page Print Utilities
-   ========================================================================== */
+/* ── 13. Dashboard / Print Styles ── */
 @media print {
-  /* 1. Completely collapse the rest of the website from the document flow */
-  header,
-  footer,
-  main,
-  nav,
-  .scroll-progress-container,
-  .custom-cursor,
-  .scroll-to-top,
-  .mobile-bottom-dock,
-  .dashboard-print-btn,
-  .btn-ghost-cyan,
-  .btn-border-beam,
+  header, footer, main, nav,
+  .scroll-progress-container, .custom-cursor,
+  .scroll-to-top, .mobile-bottom-dock,
+  .dashboard-print-btn, .btn-ghost-cyan, .btn-border-beam,
   .attendee-dashboard-content > div:first-child,
   .attendee-dashboard-content button,
   .attendee-dashboard-content > div:last-child {
     display: none !important;
   }
 
-  /* 2. Reset html & body so document height is only the ticket itself */
   html, body {
-    margin: 0 !important;
-    padding: 0 !important;
-    background: #ffffff !important;
-    color: #000000 !important;
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: none !important;
-    overflow: visible !important;
+    margin: 0 !important; padding: 0 !important;
+    background: #ffffff !important; color: #000000 !important;
+    height: auto !important; min-height: 0 !important;
+    max-height: none !important; overflow: visible !important;
   }
 
-  /* 3. The modal overlay collapses into a clean transparent block */
   .attendee-dashboard-overlay {
-    position: static !important;
-    inset: auto !important;
-    display: block !important;
-    background: transparent !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    height: auto !important;
-    min-height: 0 !important;
-    overflow: visible !important;
+    position: static !important; inset: auto !important;
+    display: block !important; background: transparent !important;
+    backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+    padding: 0 !important; margin: 0 !important;
+    height: auto !important; min-height: 0 !important; overflow: visible !important;
   }
 
   .attendee-dashboard-content {
-    position: static !important;
-    background: #ffffff !important;
-    color: #000000 !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    margin: 0 auto !important;
-    max-height: none !important;
-    max-width: 100% !important;
-    overflow: visible !important;
+    position: static !important; background: #ffffff !important;
+    color: #000000 !important; border: none !important;
+    box-shadow: none !important; padding: 0 !important;
+    margin: 0 auto !important; max-height: none !important;
+    max-width: 100% !important; overflow: visible !important;
   }
 
-  /* 4. The ticket prints cleanly on EXACTLY 1 SINGLE PAGE */
   .printable-summit-pass {
-    display: block !important;
-    position: static !important;
-    width: 100% !important;
-    max-width: 680px !important;
-    margin: 10px auto !important;
-    background: #ffffff !important;
-    color: #0f172a !important;
-    border: 2px solid #146ef5 !important;
-    border-radius: 12px !important;
-    box-shadow: none !important;
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
-    page-break-after: avoid !important;
-    page-break-before: avoid !important;
+    display: block !important; position: static !important;
+    width: 100% !important; max-width: 680px !important;
+    margin: 10px auto !important; background: #ffffff !important;
+    color: #0f172a !important; border: 2px solid #1677FF !important;
+    border-radius: 12px !important; box-shadow: none !important;
+    page-break-inside: avoid !important; break-inside: avoid !important;
   }
 
   .printable-summit-pass * {
@@ -675,27 +543,20 @@ body[data-scroll-dir="down"] .reveal-from-right:not(.is-revealed) {
     text-shadow: none !important;
   }
 
-  /* Keep top ribbon header blue */
   .printable-summit-pass > div:first-child {
-    background-color: #146ef5 !important;
+    background-color: #1677FF !important;
     color: #ffffff !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 
-  .printable-summit-pass > div:first-child * {
-    color: #ffffff !important;
-  }
-
+  .printable-summit-pass > div:first-child * { color: #ffffff !important; }
   .printable-summit-pass img {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 
-  @page {
-    size: A4 portrait;
-    margin: 10mm;
-  }
+  @page { size: A4 portrait; margin: 10mm; }
 }
 
 @media (max-width: 640px) {
@@ -708,4 +569,3 @@ body[data-scroll-dir="down"] .reveal-from-right:not(.is-revealed) {
     padding: max(6px, env(safe-area-inset-top, 6px)) 6px max(10px, env(safe-area-inset-bottom, 10px)) 6px !important;
   }
 }
-

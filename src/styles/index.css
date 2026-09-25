@@ -1,48 +1,54 @@
 /* ==========================================================================
-   FOUNDRIX 2026 — Design System Tokens & Base Styles
-   High-Voltage Dark Obsidian + Electric Cobalt Blue Aesthetic
+   FOUNDRIX 2026 — Premium Design System
+   Black + Electric Blue + Cyan Identity
    ========================================================================== */
 
 :root {
-  /* Colors */
-  --bg-primary: #060709;
-  --bg-secondary: #0c0e14;
-  --bg-card: rgba(15, 18, 28, 0.7);
-  --bg-card-hover: rgba(20, 25, 40, 0.85);
-  --bg-card-solid: #0f121c;
-  
-  --accent-blue: #146ef5;
-  --accent-blue-hover: #2579f8;
-  --accent-blue-glow: rgba(20, 110, 245, 0.4);
-  --accent-cyan: #00f0ff;
-  --accent-cyan-glow: rgba(0, 240, 255, 0.35);
-  --accent-gold: #fbbf24;
-  
-  --text-primary: #ffffff;
-  --text-secondary: #94a3b8;
+  /* ── Color Palette ── */
+  --bg-primary: #05070A;
+  --bg-secondary: #07111F;
+  --bg-surface: #0B1220;
+  --bg-card: rgba(11, 18, 32, 0.7);
+  --bg-card-hover: rgba(14, 22, 40, 0.85);
+  --bg-card-solid: #0B1220;
+
+  --accent-blue: #1677FF;
+  --accent-blue-bright: #2388FF;
+  --accent-blue-hover: #3D9AFF;
+  --accent-blue-glow: rgba(22, 119, 255, 0.4);
+  --accent-cyan: #00E5FF;
+  --accent-cyan-glow: rgba(0, 229, 255, 0.3);
+
+  --text-primary: #F5F7FA;
+  --text-secondary: #94A3B8;
   --text-muted: #64748b;
   --text-highlight: #e2e8f0;
-  
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-glow: rgba(20, 110, 245, 0.3);
-  --border-cyan: rgba(0, 240, 255, 0.4);
-  
-  /* Fonts */
-  --font-heading: 'Bebas Neue', 'Impact', sans-serif;
+
+  --border-subtle: rgba(148, 163, 184, 0.08);
+  --border-glow: rgba(22, 119, 255, 0.3);
+  --border-cyan: rgba(0, 229, 255, 0.25);
+
+  /* ── Typography ── */
+  --font-display: 'Sora', 'Space Grotesk', 'Inter', sans-serif;
+  --font-heading: 'Space Grotesk', 'Sora', 'Inter', sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  
-  /* Radii */
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+
+  /* ── Radii ── */
+  --radius-xs: 6px;
   --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
   --radius-full: 9999px;
-  
-  /* Spacing */
-  --container-max: 1240px;
-  --nav-height: 76px;
+
+  /* ── Spacing & Layout ── */
+  --container-max: 1200px;
+  --nav-height: 72px;
+  --section-padding: clamp(60px, 10vw, 120px);
 }
 
+/* ── Reset ── */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -67,13 +73,14 @@ body {
   max-width: 100vw;
   width: 100%;
   background-color: var(--bg-primary);
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(20, 110, 245, 0.18), transparent 70%),
-    radial-gradient(ellipse 60% 40% at 50% 55%, rgba(0, 240, 255, 0.05), transparent 70%),
-    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(20, 110, 245, 0.12), transparent 70%);
-  background-size: 56px 56px, 56px 56px, 100% 100%, 100% 100%, 100% 100%;
+  /* Subtle grid + atmospheric glows */
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.03) 1px, transparent 1px),
+    radial-gradient(ellipse 80% 50% at 50% -5%, rgba(22, 119, 255, 0.12), transparent 65%),
+    radial-gradient(ellipse 50% 35% at 50% 55%, rgba(0, 229, 255, 0.03), transparent 65%),
+    radial-gradient(ellipse 70% 45% at 50% 100%, rgba(22, 119, 255, 0.08), transparent 65%);
+  background-size: 64px 64px, 64px 64px, 100% 100%, 100% 100%, 100% 100%;
   background-attachment: fixed;
   color: var(--text-primary);
   line-height: 1.6;
@@ -84,66 +91,61 @@ body {
   color: #ffffff;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.15); border-radius: var(--radius-full); }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-blue); }
 
-::-webkit-scrollbar-track {
-  background: var(--bg-primary);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: var(--radius-full);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-blue);
-}
-
-/* Typography Utilities */
-h1, h2, h3, .font-heading {
-  font-family: var(--font-heading);
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
+/* ── Typography Hierarchy ── */
+h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
   line-height: 0.95;
 }
 
-.font-mono {
-  font-family: var(--font-mono);
+h2 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.0;
 }
 
-/* Container */
+h3, h4, h5 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.font-display { font-family: var(--font-display); }
+.font-heading { font-family: var(--font-heading); }
+.font-mono { font-family: var(--font-mono); }
+
+/* ── Container ── */
 .container {
   width: 100%;
   max-width: var(--container-max);
   margin-left: auto;
   margin-right: auto;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 @media (max-width: 640px) {
-  .container {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
+  .container { padding-left: 16px; padding-right: 16px; }
 }
 
-@media (max-width: 480px) {
-  .container {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
+@media (max-width: 400px) {
+  .container { padding-left: 14px; padding-right: 14px; }
 }
 
-/* Section Header Structure */
+/* ── Section Header Pattern ── */
 .section-header {
   text-align: center;
-  max-width: 780px;
-  margin: 0 auto 50px auto;
+  max-width: 720px;
+  margin: 0 auto 56px auto;
 }
 
 .section-badge {
@@ -151,48 +153,54 @@ h1, h2, h3, .font-heading {
   align-items: center;
   gap: 8px;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   padding: 6px 14px;
   border-radius: var(--radius-full);
-  background: rgba(20, 110, 245, 0.12);
-  border: 1px solid var(--border-glow);
+  background: rgba(22, 119, 255, 0.08);
+  border: 1px solid rgba(22, 119, 255, 0.2);
   color: var(--accent-cyan);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .section-title {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 900;
-  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: var(--text-primary);
   margin-bottom: 16px;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
 }
 
 .section-subtitle {
-  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  font-size: clamp(0.92rem, 1.6vw, 1.1rem);
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-/* Glass Card Baseline */
+/* ── Glass Card ── */
 .glass-card {
   background: var(--bg-card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
 }
 
 .glass-card:hover {
   border-color: var(--border-glow);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(20, 110, 245, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(22, 119, 255, 0.1);
 }
 
-/* Pill Badges */
+/* ── Pill Badge ── */
 .pill-badge {
   display: inline-flex;
   align-items: center;
@@ -200,10 +208,31 @@ h1, h2, h3, .font-heading {
   padding: 8px 16px;
   border-radius: var(--radius-full);
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border-subtle);
-  color: #ffffff;
+  background: rgba(11, 18, 32, 0.8);
+  border: 1px solid rgba(22, 119, 255, 0.25);
+  color: var(--text-primary);
   backdrop-filter: blur(10px);
+}
+
+/* ── Focus States ── */
+:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
 }

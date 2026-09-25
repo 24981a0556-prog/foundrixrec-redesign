@@ -16,6 +16,7 @@ import ScrollProgressBar from './components/Common/ScrollProgressBar';
 import ScrollToTop from './components/Common/ScrollToTop';
 import CustomCursor from './components/Common/CustomCursor';
 import MarqueeTicker from './components/Common/MarqueeTicker';
+import FinalCTA from './components/Common/FinalCTA';
 import useScrollReveal from './components/Common/useScrollReveal';
 import { getActiveParticipant, getPurchasedPass } from './services/sessionService';
 import { fetchEarlyBirdStats } from './services/registrationService';
@@ -116,6 +117,9 @@ export const App = () => {
 
         {/* 10. Event Coordinators (Tarun & Thanu) */}
         <ContactSection />
+
+        {/* 11. Final Registration CTA */}
+        <FinalCTA onRegisterClick={() => setIsRegisterOpen(true)} />
       </main>
 
       {/* 11. Modern Footer */}
